@@ -10,6 +10,7 @@ internal fun Application.suoppgave() {
     val collectorRegistry = CollectorRegistry.defaultRegistry
     installMetrics(collectorRegistry)
     naisRoutes(collectorRegistry)
+    JournalførtSøknadConsumer(environment.config).lesHendelser(this)
 }
 
 fun main(args: Array<String>) = io.ktor.server.netty.EngineMain.main(args)
