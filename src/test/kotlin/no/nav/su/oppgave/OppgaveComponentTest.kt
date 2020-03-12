@@ -55,8 +55,7 @@ class OppgaveComponentTest {
             testEnv(wireMockServer)
             suoppgave()
         }) {
-            val kafkaConfig = KafkaConfigBuilder(environment.config)
-            val producer = KafkaProducer(kafkaConfig.producerConfig(), StringSerializer(), StringSerializer())
+            val producer = environment.config.kafkaMiljø().producer()
             producer.send(
                 NySøknadMedJournalId(correlationId = "cora", sakId = "1", søknadId = "1", søknad = """{"key":"value"}""", fnr = "12345678910", aktørId = "1234567891011", gsakId = "6", journalId = "1")
                     .toProducerRecord(SØKNAD_TOPIC))
@@ -71,8 +70,7 @@ class OppgaveComponentTest {
             testEnv(wireMockServer)
             suoppgave()
         }) {
-            val kafkaConfig = KafkaConfigBuilder(environment.config)
-            val producer = KafkaProducer(kafkaConfig.producerConfig(), StringSerializer(), StringSerializer())
+            val producer = environment.config.kafkaMiljø().producer()
             producer.send(
                 NySøknadMedSkyggesak(correlationId = "cora", sakId = "2", søknadId = "1", søknad = """{"key":"value"}""", fnr = "12345678910", aktørId = "1234567891011", gsakId = "6")
                     .toProducerRecord(SØKNAD_TOPIC))
