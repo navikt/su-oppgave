@@ -33,19 +33,17 @@ internal class OppgaveClient(
                 .body(
                         """
                     { 
-                        "tildeltEnhetsnr": "0219", Hvilken enhet? Denne trenger vi kanskje ikke blir kanskje satt automatisk etter disse reglene : https://norg2-frontend.nais.preprod.local/#/arbeidsfordeling
-                        "journalpostId": ${nySøknadMedJournalId.journalId}
-                        "saksreferanse": ${nySøknadMedJournalId.sakId}                        // eller gsakId ?
-                        "aktoerId": ${nySøknadMedJournalId.aktørId}
-                        "tilordnetRessurs": "Z998323",                                        // Trenger vi denne? Saksbehandler eller ikke satt
-                        "beskrivelse": "string",                                              // Trenger vi beskrivelse ?
-                        "tema": "SUP",                                                        // Denne er grei
-                        "oppgavetype": "ATT",                                                 // Er ATT riktig for alle?
-                        "aktivDato": ${LocalDate.now()},                                      // "2018-03-10", Dagen i dag, eller frem i tid?
-                        "fristFerdigstillelse": ${LocalDate.now().plusDays(30)}     // "2018-03-24", Hvilken dato skal vi sette her?
-                        "prioritet": "HOY",                                                   // Hva skal vi sette som prioritet?
-                        "behandlingstema": "ab0158", https://kodeverk-web.nais.adeo.no/kodeverksoversikt/kodeverk/Behandlingstema/kode/
-                        "behandlingstype": "ae0034", https://kodeverksmapper.nais.adeo.no/kodeverksmapper/underkategorier
+                        "tildeltEnhetsnr": "0219",
+                        "journalpostId": ${nySøknadMedJournalId.journalId},
+                        "saksreferanse": ${nySøknadMedJournalId.gsakId},
+                        "aktoerId": ${nySøknadMedJournalId.aktørId}, 
+                        "tema": "SUP",
+                        "oppgavetype": "ATT",
+                        "behandlingstema": "ab0158", 
+                        "behandlingstype": "ae0034", 
+                        "aktivDato": ${LocalDate.now()},
+                        "fristFerdigstillelse": ${LocalDate.now().plusDays(30)},
+                        "prioritet": "HOY"
                      }
          """.trimIndent()
                 ).responseString()
