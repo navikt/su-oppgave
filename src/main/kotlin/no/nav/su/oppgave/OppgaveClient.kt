@@ -12,6 +12,9 @@ import java.time.LocalDate
 
 val oppgavePath = "/api/v1/oppgaver"
 
+private const val TEMA_SU_UFØR_FLYKTNING = "ab0431"
+private const val TYPE_FØRSTEGANGSSØKNAD = "ae0244"
+
 internal sealed class Oppgave {
     abstract fun opprettOppgave(nySøknadMedJournalId: NySøknadMedJournalId): Long
 }
@@ -39,8 +42,8 @@ internal class OppgaveClient(
                         "aktoerId": ${nySøknadMedJournalId.aktørId}, 
                         "tema": "SUP",
                         "oppgavetype": "ATT",
-                        "behandlingstema": "ab0158", 
-                        "behandlingstype": "ae0034", 
+                        "behandlingstema": "$TEMA_SU_UFØR_FLYKTNING", 
+                        "behandlingstype": "$TYPE_FØRSTEGANGSSØKNAD", 
                         "aktivDato": ${LocalDate.now()},
                         "fristFerdigstillelse": ${LocalDate.now().plusDays(30)},
                         "prioritet": "HOY"
