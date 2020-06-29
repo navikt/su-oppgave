@@ -39,6 +39,7 @@ internal class OppgaveClient(
                         "saksreferanse": "${nySøknadMedJournalId.sakId}",
                         "aktoerId": "${nySøknadMedJournalId.aktørId}", 
                         "tema": "SUP",
+                        "behandlesAvApplikasjon": "SUPSTONAD",
                         "oppgavetype": "BEH_SAK",
                         "behandlingstema": "$TEMA_SU_UFØR_FLYKTNING", 
                         "behandlingstype": "$TYPE_FØRSTEGANGSSØKNAD", 

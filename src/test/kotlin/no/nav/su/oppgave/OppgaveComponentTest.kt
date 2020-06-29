@@ -46,6 +46,7 @@ class OppgaveComponentTest {
                                                       "saksreferanse": "$sakId",
                                                       "aktoerId": "$aktørId",
                                                       "tema": "SUP",
+                                                      "behandlesAvApplikasjon": "SUPSTONAD",
                                                       "behandlingstema": "ab0431",
                                                       "oppgavetype": "BEH_SAK",
                                                       "behandlingstype": "ae0245",
@@ -121,6 +122,7 @@ class OppgaveComponentTest {
             assertEquals(requestJson.getString("behandlingstema"), "ab0431")
             assertEquals(requestJson.getString("behandlingstype"), "ae0245")
             assertEquals(requestJson.getString("prioritet"), "NORM")
+            assertEquals(requestJson.getString("behandlesAvApplikasjon"), "SUPSTONAD")
         }
     }
 
