@@ -9,8 +9,8 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.server.testing.withTestApplication
 import io.ktor.util.KtorExperimentalAPI
 import no.nav.su.meldinger.kafka.Topics.SØKNAD_TOPIC
+import no.nav.su.meldinger.kafka.soknad.NySøknad
 import no.nav.su.meldinger.kafka.soknad.NySøknadMedJournalId
-import no.nav.su.meldinger.kafka.soknad.NySøknadMedSkyggesak
 import org.json.JSONObject
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
@@ -100,7 +100,6 @@ class OppgaveComponentTest {
                 søknad = """{"key":"value"}""",
                 fnr = "12345678910",
                 aktørId = "1234567891011",
-                gsakId = "6",
                 journalId = "1")
 
         withTestApplication({
@@ -133,14 +132,13 @@ class OppgaveComponentTest {
             suoppgave()
         }) {
             val producer = environment.config.kafkaMiljø().producer()
-            producer.send(NySøknadMedSkyggesak(
+            producer.send(NySøknad(
                     correlationId = "cora",
                     sakId = "2",
                     søknadId = "1",
                     søknad = """{"key":"value"}""",
                     fnr = "12345678910",
-                    aktørId = "1234567891011",
-                    gsakId = "6").toProducerRecord(SØKNAD_TOPIC))
+                    aktørId = "1234567891011").toProducerRecord(SØKNAD_TOPIC))
             Thread.sleep(2000)
             wireMockServer.verify(0, postRequestedFor(urlEqualTo(oppgavePath)))
         }
